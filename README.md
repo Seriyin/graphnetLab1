@@ -1,2 +1,2 @@
-# graphnetLab0
-Trying to generate single components in random graphs.
+# graphnetLab1
+Trying to generate single preferentially attached components (Barabasi-Albert model) in random graphs.
