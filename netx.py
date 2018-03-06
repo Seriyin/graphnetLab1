@@ -11,10 +11,10 @@ class Grapher:
     
     def build_connected(self):
         weights = list(range(0,len(self.graph))) 
-        while not nx.is_connected:
-            s = randrange(0, len(self.graph))
-            tc = randrange(0, weights[len(self.graph)])
-            if weights[s] != tc :
+        while not nx.is_connected(self.graph):
+            s = randrange(0, len(self.graph)-1)
+            tc = randrange(0, weights[len(self.graph)-1])
+            if weights[s] != tc or not (weights[s] < tc and weights[s+1] > tc) :
                 t = self.loop_node(weights, s, tc)
                 self.graph.add_edge(s, t)
 
