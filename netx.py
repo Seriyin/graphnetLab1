@@ -19,18 +19,24 @@ class Grapher:
                 weights[l[0]]*=1.15
                 weights[l[1]]*=1.15
 
-    def sample_graph(self, size, samples):
-        self.generate_n(size)
-        self.build_connected()
+    def sample_graph(self, size):
         return nx.degree_histogram(self.graph)
 
 
 def main():
     graph = Grapher()
     for i in range(20,100,5):
-        samplemat = graph.sample_graph(i, 30)
         f = pyplot.figure()
-        pyplot.plot(range(0,len(samplemat)),samplemat)
+#        pyplot.subplot(121)
+        graph.generate_n(i)
+        graph.build_connected()
+#        nx.draw(graph.graph)
+#        pyplot.subplot(122)
+        pyplot.xlabel("Node Degree")
+        pyplot.ylabel("Absolute Frequency")
+        pyplot.title("Degree to Frequency in Preferencially Attached Graph")
+        sample = graph.sample_graph(i)
+        pyplot.bar(range(1,len(sample)+1),sample)
         pyplot.savefig(f'powergraphsampling{i}.pdf')
         pyplot.close(f)
 
